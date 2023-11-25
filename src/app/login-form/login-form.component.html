@@ -1,0 +1,44 @@
+<div class="container-fluid w-50">
+  <form [formGroup]="loginForm" (ngSubmit)="userLogin()">
+    <div>
+      <h3 class="d-flex justify-content-center mt-3">User Login!</h3>
+    </div>
+    <div class="mt-3">
+      <label for="uname" class="form-label fw-bold">Username: </label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter username"
+        name="uname"
+        formControlName="username"
+        required
+      />
+    </div>
+
+    <div class="mt-3">
+      <label for="pass" class="form-label fw-bold">Password: </label>
+      <input
+        type="password"
+        class="form-control"
+        placeholder="Enter password"
+        name="pass"
+        formControlName="password"
+        required
+      />
+    </div>
+
+    <div class="mt-3 d-grid gap-2">
+      <button class="btn btn-outline-success d-block" type="submit">
+        Login
+      </button>
+    </div>
+
+    <div>
+      <p class="d-flex justify-content-center">
+        <a class="link-opacity-100 mt-3" [routerLink]="'/register'"
+          >New User Registration?</a
+        >
+      </p>
+    </div>
+  </form>
+</div>

@@ -1,6 +1,7 @@
 import { JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-form',
@@ -8,6 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./register-form.component.css']
 })
 export class RegisterFormComponent {
+  auth : unknown = null;
    validation = [Validators.required,Validators.minLength(6)]
    emailvalidation = [Validators.required,Validators.minLength(6),Validators.email]
    registerForm = new FormGroup({
@@ -16,6 +18,15 @@ export class RegisterFormComponent {
     username : new FormControl('',this.validation),
     password : new FormControl('',this.validation)
   })
+
+  constructor(private router : Router)
+  {
+    this.auth = localStorage.getItem('auth');
+    if(this.auth)
+    {
+      this.router.navigate(['/home']);
+    }
+  }
 
   userRegistration() {
     if(this.registerForm.invalid)

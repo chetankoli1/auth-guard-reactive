@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class LoginFormComponent {
   uname : unknown = "";
   pass : unknown = "";
+  auth : unknown = null;
   loginForm = new FormGroup({
     username : new FormControl('', [
       Validators.required,
@@ -20,6 +21,11 @@ export class LoginFormComponent {
   })
 
   constructor(private router : Router) {
+    this.auth = localStorage.getItem('auth');
+    if(this.auth)
+    {
+      this.router.navigate(['/home']);
+    }
     this.loginForm.valueChanges.subscribe(v => console.log(v));
   }
   userLogin()
@@ -33,6 +39,7 @@ export class LoginFormComponent {
       this.uname = this.loginForm.get('username')?.value;
       localStorage.setItem('auth',"chetan");
       this.router.navigate(['/home']);
+      localStorage.removeItem('login');
     }
   }
 
